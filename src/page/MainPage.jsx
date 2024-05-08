@@ -23,6 +23,14 @@ const MainPage = () => {
     setWordList((prevWordList) => prevWordList.filter((w) => w !== word));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (wordList.includes(inputValue)) {
+      deleteWord(inputValue);
+    }
+    setInputValue('');
+  };
+
   useEffect(() => {
     if (!gameOver) {
       const gameCheck = setInterval(() => {
@@ -33,24 +41,23 @@ const MainPage = () => {
           alert('미션 실패! 게임 종료!');
           window.location.reload();
         }
-      }, 1000);
+      }, 2000);
 
       return () => clearInterval(gameCheck);
     }
   }, [gameOver, wordList]);
 
-  // console.log(wordList);
-  // console.log(words.words);
-  // console.log(words.length);
-  // console.log(inputValue);
-
   return (
     <div className={styles.container}>
       <div className={styles.wordBox}>
-        <WordsTab wordList={wordList} />
+        <WordsTab wordList={wordList} deleteWord={deleteWord} />
       </div>
       <div className={styles.inputBox}>
-        <DefaultInput value={inputValue} onChange={handleInputChange} />
+        <DefaultInput
+          value={inputValue}
+          onChange={handleInputChange}
+          onSubmit={handleSubmit}
+        />
       </div>
     </div>
   );
