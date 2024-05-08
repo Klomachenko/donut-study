@@ -1,9 +1,9 @@
 import styles from '../../../src/css/Word.module.css';
 
-const Word = () => {
+const Word = ({ word }) => {
   return (
     <div className={styles.div}>
-      <span>단어입니다</span>
+      <span>{word}</span>
     </div>
   );
 };

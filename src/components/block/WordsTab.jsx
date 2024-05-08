@@ -1,19 +1,13 @@
 import styles from '../../../src/css/WordsTab.module.css';
 import Word from '../atom/Word';
 
-const WordsTab = () => {
+const WordsTab = ({ wordList }) => {
+  console.log(wordList);
   return (
     <div className={styles.div}>
-      <Word />
-      <Word />
-      <Word />
-      <Word />
-      <Word />
-      <Word />
-      <Word />
-      <Word />
-      <Word />
-      <Word />
+      {wordList.map((word, index) => (
+        <Word key={word} word={word} />
+      ))}
     </div>
   );
 };
