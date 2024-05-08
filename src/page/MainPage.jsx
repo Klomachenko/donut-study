@@ -15,10 +15,14 @@ const MainPage = () => {
     setWordList((prevWordList) => [...prevWordList, randomWord]);
   };
 
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
   useEffect(() => {
     if (!gameOver) {
       const gameCheck = setInterval(() => {
-        if (wordList.length < 8) {
+        if (wordList.length < 9) {
           addRandomWord();
         } else {
           setGameOver(true);
@@ -34,6 +38,7 @@ const MainPage = () => {
   // console.log(wordList);
   // console.log(words.words);
   // console.log(words.length);
+  // console.log(inputValue);
 
   return (
     <div className={styles.container}>
@@ -41,7 +46,7 @@ const MainPage = () => {
         <WordsTab wordList={wordList} />
       </div>
       <div className={styles.inputBox}>
-        <DefaultInput />
+        <DefaultInput value={inputValue} onChange={handleInputChange} />
       </div>
     </div>
   );
