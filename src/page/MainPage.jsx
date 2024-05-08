@@ -19,6 +19,10 @@ const MainPage = () => {
     setInputValue(e.target.value);
   };
 
+  const deleteWord = (word) => {
+    setWordList((prevWordList) => prevWordList.filter((w) => w !== word));
+  };
+
   useEffect(() => {
     if (!gameOver) {
       const gameCheck = setInterval(() => {
